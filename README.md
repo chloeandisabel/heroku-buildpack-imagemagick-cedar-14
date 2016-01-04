@@ -3,51 +3,38 @@ Heroku Buildpack ImageMagick Cedar 14
 
 Use the latest version of ImageMagick inside Heroku  _Cedar 14_.
 
-ImageMagick 6.8 [won't be
-merged](https://bugs.launchpad.net/ubuntu/+source/imagemagick/+bug/1179054) into Ubuntu until Ubuntu vivid is released.
+ImageMagick 6.8 [won't be merged](https://bugs.launchpad.net/ubuntu/+source/imagemagick/+bug/1179054) into Ubuntu until Ubuntu vivid is released.
 
-This buildpack downloads and installs the [vivid
-packages](https://launchpad.net/ubuntu/vivid/arm64/imagemagick/8:6.8.9.9-2)
-manually.
+This buildpack downloads and installs the [vivid packages](https://launchpad.net/ubuntu/vivid/arm64/imagemagick/8:6.8.9.9-2) manually.
 
 ## Usage
 
-This buildpack is built to be used through
-[heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi),
-so in your app you need to:
-```
-heroku config:set BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi
-```
+Heroku now supports using multiple buildpacks for an app - see [here](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app) for more info.
 
-Then, create a `.buildpacks` file inside your app:
+So in your app you need to do:
+
 ```
+heroku buildpacks:set --index 1
 https://github.com/ello/heroku-buildpack-imagemagick-cedar-14
+
+heroku buildpacks:set --index 2
 https://github.com/heroku/heroku-buildpack-nodejs
 ```
 
-This example was based on the nodejs buildpack, but it can be used with
-any other.
-If it is not working with yours, please report a bug.
+Then deploy your application. This example was based on the nodejs buildpack, but it can be used with any other. If it is not working with yours, please report a bug.
 
 ## Thanks
 
-Thanks to the creator and contributors of the original
-[heroku-buildpack-image-magick](https://github.com/mcollina/heroku-buildpack-imagemagick)
-for many of the ideas used here
+Thanks to the creator and contributors of the original [heroku-buildpack-image-magick](https://github.com/mcollina/heroku-buildpack-imagemagick) for many of the ideas used here
 
 ## Contributing to heroku-buildpack-imagemagick-cedar-14
 
-* Check out the latest master to make sure the feature hasn't been
-  implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't
-  requested it and/or contributed it
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
 * Start a feature/bugfix branch
 * Commit and push until you are happy with your contribution
-* Please try not to mess with the configs.sh. If you
-  want to have your own version, or is otherwise necessary, that is
-  fine, but please isolate to its own commit so I can cherry-pick around
-  it.
+* Please try not to mess with the configs.sh. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 ## LICENSE - "MIT License"
 
